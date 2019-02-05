@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class InitTable {
 
-    @Test
+    //@Test
     public void init() {
         ProcessEngineConfiguration cfg = ProcessEngineConfiguration.createProcessEngineConfigurationFromResource("activiti.cfg.xml");
         ProcessEngine processEngine = cfg.buildProcessEngine();
