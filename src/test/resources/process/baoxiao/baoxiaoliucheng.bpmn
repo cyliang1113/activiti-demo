@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="baoxiaoliucheng" name="报销流程" isExecutable="true">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="baoxiaoshenqing" name="报销申请" activiti:assignee="zhangsan"></userTask>
+    <userTask id="caiwushenpi" name="财务审批" activiti:candidateUsers="a,b,c"></userTask>
+    <userTask id="jinglishenpi" name="经理审批" activiti:assignee="lisi"></userTask>
+    <sequenceFlow id="flow2" sourceRef="baoxiaoshenqing" targetRef="caiwushenpi"></sequenceFlow>
+    <sequenceFlow id="flow3" sourceRef="caiwushenpi" targetRef="jinglishenpi"></sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="startevent1" targetRef="baoxiaoshenqing"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow6" sourceRef="jinglishenpi" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_baoxiaoliucheng">
+    <bpmndi:BPMNPlane bpmnElement="baoxiaoliucheng" id="BPMNPlane_baoxiaoliucheng">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="335.0" y="20.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="baoxiaoshenqing" id="BPMNShape_baoxiaoshenqing">
+        <omgdc:Bounds height="55.0" width="105.0" x="300.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="caiwushenpi" id="BPMNShape_caiwushenpi">
+        <omgdc:Bounds height="55.0" width="105.0" x="300.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="jinglishenpi" id="BPMNShape_jinglishenpi">
+        <omgdc:Bounds height="55.0" width="105.0" x="300.0" y="310.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="510.0" y="330.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="352.0" y="155.0"></omgdi:waypoint>
+        <omgdi:waypoint x="352.0" y="200.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="352.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="352.0" y="310.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="352.0" y="55.0"></omgdi:waypoint>
+        <omgdi:waypoint x="352.0" y="100.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="405.0" y="337.0"></omgdi:waypoint>
+        <omgdi:waypoint x="510.0" y="347.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
