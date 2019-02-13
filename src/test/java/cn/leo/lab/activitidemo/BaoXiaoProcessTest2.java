@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BaoXiaoProcessTest2 {
     private static Log log = LogFactory.getLog(BaoXiaoProcessTest2.class);
@@ -60,10 +61,12 @@ public class BaoXiaoProcessTest2 {
         String proposer = "wangwu";
         String accountants = "A1,A2";
         String manager = "zhaoliu";
+        Integer money = 10000;
         HashMap<String, Object> var = new HashMap<>();
         var.put("proposer", proposer);
         var.put("accountants", accountants);
         var.put("manager", manager);
+        var.put("money", money);
 
         ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceByKey(key,var);
         log.info(processInstance.getId());
@@ -76,22 +79,27 @@ public class BaoXiaoProcessTest2 {
     @Test
     public void queryProcess(){
         TaskQuery taskQuery = processEngine.getTaskService().createTaskQuery();
-//        taskQuery.taskCandidateUser("A1");
+//        taskQuery.taskCandidateUser("AA");
+//        taskQuery.taskAssignee("AA");
         List<Task> list = taskQuery.list();
         for(Task t : list){
             log.info(t.getName());
-            log.info(t.getId());
-            log.info(t.getAssignee());
-            log.info(t.getProcessDefinitionId());
+            log.info("taskId: " + t.getId());
+            log.info("assignee: " + t.getAssignee());
+            log.info("流程Id:" + t.getProcessInstanceId());
+            String processInstanceId = t.getProcessInstanceId();
+            Map<String, Object> variables = processEngine.getRuntimeService().getVariables(processInstanceId);
+            log.info(variables.get("money"));
+            log.info(variables.get("money").getClass());
         }
+
     }
 
     @Test
     public void claim(){
-        String taskId = "32502";
-        String userId = "A1";
+        String taskId = "47502";
+        String userId = "AAA";
         processEngine.getTaskService().claim(taskId, userId);
-
     }
 
     /**
@@ -99,7 +107,7 @@ public class BaoXiaoProcessTest2 {
      */
     @Test
     public void baoxiao(){
-        String taskId = "30007";
+        String taskId = "47502";
         processEngine.getTaskService().complete(taskId);
 
     }
