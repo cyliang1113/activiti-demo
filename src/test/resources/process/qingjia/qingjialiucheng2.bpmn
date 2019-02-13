@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="qingjialiucheng2" name="请假流程2" isExecutable="true">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="qingjiashenqing" name="请假申请" activiti:assignee="zhangsan"></userTask>
+    <userTask id="jinglishenpi" name="经理审批" activiti:assignee="lisi"></userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="qingjiashenqing"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow4" sourceRef="qingjiashenqing" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow5" name="days&lt;=3" sourceRef="exclusivegateway1" targetRef="jinglishenpi">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${days<=3}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="laobanshenpi" name="老板审批" activiti:assignee="laoban"></userTask>
+    <sequenceFlow id="flow7" name="days&gt;3" sourceRef="exclusivegateway1" targetRef="laobanshenpi">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${days>3}]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_qingjialiucheng2">
+    <bpmndi:BPMNPlane bpmnElement="qingjialiucheng2" id="BPMNPlane_qingjialiucheng2">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="101.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="qingjiashenqing" id="BPMNShape_qingjiashenqing">
+        <omgdc:Bounds height="55.0" width="105.0" x="210.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="jinglishenpi" id="BPMNShape_jinglishenpi">
+        <omgdc:Bounds height="55.0" width="105.0" x="489.0" y="70.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="370.0" y="147.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="laobanshenpi" id="BPMNShape_laobanshenpi">
+        <omgdc:Bounds height="55.0" width="105.0" x="489.0" y="194.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="136.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="210.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="315.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="370.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="390.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="390.0" y="97.0"></omgdi:waypoint>
+        <omgdi:waypoint x="489.0" y="97.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="100.0" x="390.0" y="147.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="390.0" y="187.0"></omgdi:waypoint>
+        <omgdi:waypoint x="390.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="489.0" y="221.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="100.0" x="390.0" y="187.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
