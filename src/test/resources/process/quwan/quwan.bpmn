@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="quwanliucheng" name="去玩流程" isExecutable="true">
+    <documentation>小朋友去玩，需要爸爸妈妈同意，爷爷同意</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="quwan" name="去玩" activiti:assignee="xiaoming"></userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="quwan"></sequenceFlow>
+    <parallelGateway id="parallelgateway1" name="Parallel Gateway"></parallelGateway>
+    <sequenceFlow id="flow2" sourceRef="quwan" targetRef="parallelgateway1"></sequenceFlow>
+    <userTask id="mamatongyi" name="妈妈同意" activiti:assignee="mama"></userTask>
+    <sequenceFlow id="flow3" sourceRef="parallelgateway1" targetRef="mamatongyi"></sequenceFlow>
+    <userTask id="babatongyi" name="爸爸同意" activiti:assignee="baba"></userTask>
+    <sequenceFlow id="flow4" sourceRef="parallelgateway1" targetRef="babatongyi"></sequenceFlow>
+    <parallelGateway id="parallelgateway2" name="Parallel Gateway"></parallelGateway>
+    <sequenceFlow id="flow5" sourceRef="babatongyi" targetRef="parallelgateway2"></sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="mamatongyi" targetRef="parallelgateway2"></sequenceFlow>
+    <userTask id="yeyetongyi" name="爷爷同意" activiti:assignee="yeye"></userTask>
+    <sequenceFlow id="flow7" sourceRef="parallelgateway2" targetRef="yeyetongyi"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_quwanliucheng">
+    <bpmndi:BPMNPlane bpmnElement="quwanliucheng" id="BPMNPlane_quwanliucheng">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="140.0" y="290.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="quwan" id="BPMNShape_quwan">
+        <omgdc:Bounds height="55.0" width="105.0" x="220.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="parallelgateway1" id="BPMNShape_parallelgateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="390.0" y="287.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="mamatongyi" id="BPMNShape_mamatongyi">
+        <omgdc:Bounds height="55.0" width="105.0" x="490.0" y="334.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="babatongyi" id="BPMNShape_babatongyi">
+        <omgdc:Bounds height="55.0" width="105.0" x="490.0" y="210.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="parallelgateway2" id="BPMNShape_parallelgateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="660.0" y="287.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="yeyetongyi" id="BPMNShape_yeyetongyi">
+        <omgdc:Bounds height="55.0" width="105.0" x="745.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="175.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="220.0" y="307.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="325.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="390.0" y="307.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="410.0" y="327.0"></omgdi:waypoint>
+        <omgdi:waypoint x="410.0" y="361.0"></omgdi:waypoint>
+        <omgdi:waypoint x="490.0" y="361.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="410.0" y="287.0"></omgdi:waypoint>
+        <omgdi:waypoint x="410.0" y="237.0"></omgdi:waypoint>
+        <omgdi:waypoint x="490.0" y="237.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="595.0" y="237.0"></omgdi:waypoint>
+        <omgdi:waypoint x="680.0" y="237.0"></omgdi:waypoint>
+        <omgdi:waypoint x="680.0" y="287.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="595.0" y="361.0"></omgdi:waypoint>
+        <omgdi:waypoint x="680.0" y="361.0"></omgdi:waypoint>
+        <omgdi:waypoint x="680.0" y="327.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="700.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="745.0" y="307.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

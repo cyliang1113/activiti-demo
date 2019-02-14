@@ -15,8 +15,8 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.List;
 
-public class QingJiaProcessTest2 {
-    private static Log log = LogFactory.getLog(QingJiaProcessTest2.class);
+public class QuWanProcessTest {
+    private static Log log = LogFactory.getLog(QuWanProcessTest.class);
 
     private static ProcessEngine processEngine = null;
 
@@ -31,9 +31,9 @@ public class QingJiaProcessTest2 {
     @Test
     public void deploy() {
         DeploymentBuilder deployment = processEngine.getRepositoryService().createDeployment();
-        deployment.addClasspathResource("process/qingjia/qingjialiucheng2.bpmn");
-        deployment.addClasspathResource("process/qingjia/qingjialiucheng2.png");
-        deployment.name("请假流程2部署");
+        deployment.addClasspathResource("process/quwan/quwan.bpmn");
+        deployment.addClasspathResource("process/quwan/quwan.png");
+        deployment.name("去玩流程部署");
         Deployment deploy = deployment.deploy();
         log.info(deploy.getId());
         log.info(deploy.getName());
@@ -56,7 +56,7 @@ public class QingJiaProcessTest2 {
     public void qingjiaStart(){
 //        String liuchengId = "qingjialiucheng:1:4";
 //        ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceById(liuchengId);
-        String key = "qingjialiucheng2";
+        String key = "quwanliucheng";
         ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceByKey(key);
         log.info(processInstance.getId());
         log.info(processInstance.getName());
@@ -83,7 +83,7 @@ public class QingJiaProcessTest2 {
      */
     @Test
     public void qingjia(){
-        String taskId = "15004";
+        String taskId = "22504";
         HashMap<String, Object> var = new HashMap<>();
         var.put("days", 10);
         processEngine.getTaskService().complete(taskId, var);
@@ -95,7 +95,7 @@ public class QingJiaProcessTest2 {
      */
     @Test
     public void qingjiashenpi(){
-        String taskId = "87504";
+        String taskId = "30003";
         processEngine.getTaskService().complete(taskId);
 
     }
