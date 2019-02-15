@@ -3,10 +3,10 @@
   <process id="quwanliucheng" name="去玩流程" isExecutable="true">
     <documentation>小朋友去玩，需要爸爸妈妈同意，爷爷同意</documentation>
     <startEvent id="startevent1" name="Start"></startEvent>
-    <userTask id="quwan" name="去玩" activiti:assignee="xiaoming"></userTask>
-    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="quwan"></sequenceFlow>
+    <userTask id="quwanshenqing" name="去玩" activiti:assignee="xiaoming"></userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="quwanshenqing"></sequenceFlow>
     <parallelGateway id="parallelgateway1" name="Parallel Gateway"></parallelGateway>
-    <sequenceFlow id="flow2" sourceRef="quwan" targetRef="parallelgateway1"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="quwanshenqing" targetRef="parallelgateway1"></sequenceFlow>
     <userTask id="mamatongyi" name="妈妈同意" activiti:assignee="mama"></userTask>
     <sequenceFlow id="flow3" sourceRef="parallelgateway1" targetRef="mamatongyi"></sequenceFlow>
     <userTask id="babatongyi" name="爸爸同意" activiti:assignee="baba"></userTask>
@@ -17,12 +17,21 @@
     <userTask id="yeyetongyi" name="爷爷同意" activiti:assignee="yeye"></userTask>
     <sequenceFlow id="flow7" sourceRef="parallelgateway2" targetRef="yeyetongyi"></sequenceFlow>
   </process>
+  <process id="process_pool1" name="process_pool1" isExecutable="true">
+    <laneSet id="laneSet_process_pool1">
+      <lane id="lane1"></lane>
+      <lane id="lane2" name="New lane"></lane>
+      <lane id="lane3" name="New lane"></lane>
+      <lane id="lane4" name="New lane"></lane>
+      <lane id="lane5" name="New lane"></lane>
+    </laneSet>
+  </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_quwanliucheng">
     <bpmndi:BPMNPlane bpmnElement="quwanliucheng" id="BPMNPlane_quwanliucheng">
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
         <omgdc:Bounds height="35.0" width="35.0" x="140.0" y="290.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="quwan" id="BPMNShape_quwan">
+      <bpmndi:BPMNShape bpmnElement="quwanshenqing" id="BPMNShape_quwanshenqing">
         <omgdc:Bounds height="55.0" width="105.0" x="220.0" y="280.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="parallelgateway1" id="BPMNShape_parallelgateway1">

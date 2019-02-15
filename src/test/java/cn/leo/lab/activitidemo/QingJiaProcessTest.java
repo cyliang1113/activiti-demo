@@ -5,6 +5,8 @@ import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.DeploymentBuilder;
+import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.task.TaskQuery;
@@ -12,6 +14,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class QingJiaProcessTest {
@@ -56,7 +60,13 @@ public class QingJiaProcessTest {
 //        String liuchengId = "qingjialiucheng:1:4";
 //        ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceById(liuchengId);
         String key = "qingjialiucheng";
-        ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceByKey(key);
+        HashMap<String, String> form = new HashMap<String, String>();
+        form.put("startTime", "2019-02-15");
+        form.put("endTime", "2019-02-17");
+        form.put("reason", "请年假");
+//        ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceByKey(key, form);
+        ProcessDefinition processDefinition = processEngine.getRepositoryService().createProcessDefinitionQuery().processDefinitionKey(key).latestVersion().singleResult();
+        ProcessInstance processInstance = processEngine.getFormService().submitStartFormData(processDefinition.getId(), form);
         log.info(processInstance.getId());
         log.info(processInstance.getName());
     }
@@ -81,7 +91,7 @@ public class QingJiaProcessTest {
      */
     @Test
     public void qingjia(){
-        String taskId = "5004";
+        String taskId = "40002";
         processEngine.getTaskService().complete(taskId);
 
     }
