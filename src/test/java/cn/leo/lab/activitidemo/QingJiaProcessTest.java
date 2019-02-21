@@ -1,5 +1,6 @@
 package cn.leo.lab.activitidemo;
 
+import org.activiti.engine.IdentityService;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.RepositoryService;
@@ -103,6 +104,11 @@ public class QingJiaProcessTest {
     public void qingjiashenpi(){
         String taskId = "7502";
         processEngine.getTaskService().complete(taskId);
+
+    }
+
+    public void queryProcess1(){
+        IdentityService identityService = processEngine.getIdentityService();
 
     }
 }
