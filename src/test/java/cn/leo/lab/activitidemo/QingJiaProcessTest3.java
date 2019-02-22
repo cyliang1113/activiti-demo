@@ -48,7 +48,7 @@ public class QingJiaProcessTest3 {
     public void qingjiaStart(){
 //        String liuchengId = "qingjialiucheng:1:4";
 //        ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceById(liuchengId);
-        String name = "xixi";
+        String name = "xiaoming";
         processEngine.getIdentityService().setAuthenticatedUserId(name);
         String key = "qingjialiucheng3";
         HashMap<String, Object> var = new HashMap<>();
@@ -92,11 +92,11 @@ public class QingJiaProcessTest3 {
      */
     @Test
     public void qingjia(){
-        String taskId = "117506";
+        String taskId = "130005";
         HashMap<String, Object> var = new HashMap<>();
-        var.put("days", 10);
+        var.put("days", 7);
         Task task = processEngine.getTaskService().createTaskQuery().taskId(taskId).singleResult();
-        processEngine.getTaskService().addComment(taskId, task.getProcessInstanceId(), "累了");
+        processEngine.getTaskService().addComment(taskId, task.getProcessInstanceId(), "一个星期, 行吗");
         processEngine.getTaskService().complete(taskId, var);
 
     }
@@ -106,11 +106,12 @@ public class QingJiaProcessTest3 {
      */
     @Test
     public void qingjiashenpi(){
-        String taskId = "120005";
+        String taskId = "132504";
         HashMap<String, Object> var = new HashMap<>();
         var.put("result", "AGREE");
+//        var.put("result", "AGAIN_APPLY");
         Task task = processEngine.getTaskService().createTaskQuery().taskId(taskId).singleResult();
-        processEngine.getTaskService().addComment(task.getId(), task.getProcessInstanceId(), "准了");
+        processEngine.getTaskService().addComment(task.getId(), task.getProcessInstanceId(), "批准");
         processEngine.getTaskService().complete(taskId, var);
 
     }
