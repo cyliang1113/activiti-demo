@@ -142,4 +142,10 @@ public class QingJiaProcessTest3 {
             }
         }
     }
+
+    @Test
+    public void query() {
+        processEngine.getHistoryService().createHistoricTaskInstanceQuery().taskAssignee("");
+
+    }
 }
