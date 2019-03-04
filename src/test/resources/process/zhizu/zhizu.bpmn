@@ -4,7 +4,7 @@
     <userTask id="entry" name="进件" activiti:assignee="${entryUser}"></userTask>
     <userTask id="first_verify" name="初审" activiti:candidateUsers="B1,B2">
       <extensionElements>
-        <activiti:taskListener event="create" class="cn.leo.activitidemo.listener.ReClaimTaskListener"></activiti:taskListener>
+        <activiti:taskListener event="create" class="cn.leo.demo.activiti.listener.ReClaimTaskListener"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow2" sourceRef="entry" targetRef="first_verify"></sequenceFlow>
@@ -15,7 +15,7 @@
     </sequenceFlow>
     <userTask id="re_verify" name="复审" activiti:candidateUsers="C1,C2">
       <extensionElements>
-        <activiti:taskListener event="create" class="cn.leo.activitidemo.listener.ReClaimTaskListener"></activiti:taskListener>
+        <activiti:taskListener event="create" class="cn.leo.demo.activiti.listener.ReClaimTaskListener"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow5" name="通过" sourceRef="exclusivegateway1" targetRef="re_verify">
@@ -81,14 +81,14 @@
         <omgdi:waypoint x="212.0" y="48.0"></omgdi:waypoint>
         <omgdi:waypoint x="212.0" y="130.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="16.0" width="100.0" x="550.0" y="137.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="24.0" x="550.0" y="137.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
         <omgdi:waypoint x="570.0" y="157.0"></omgdi:waypoint>
         <omgdi:waypoint x="660.0" y="157.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="16.0" width="100.0" x="570.0" y="157.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="24.0" x="570.0" y="157.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
@@ -102,14 +102,14 @@
         <omgdi:waypoint x="412.0" y="258.0"></omgdi:waypoint>
         <omgdi:waypoint x="412.0" y="185.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="16.0" width="100.0" x="850.0" y="177.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="24.0" x="850.0" y="177.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
         <omgdi:waypoint x="870.0" y="157.0"></omgdi:waypoint>
         <omgdi:waypoint x="950.0" y="157.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="16.0" width="100.0" x="870.0" y="157.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="24.0" x="870.0" y="157.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
