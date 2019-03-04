@@ -11,7 +11,7 @@
 
     <properties>
         <spring.version>3.2.0.RELEASE</spring.version>
-        <activiti-version>5.18.0</activiti-version>
+        <activiti-version>5.22.0</activiti-version>
     </properties>
 
 
