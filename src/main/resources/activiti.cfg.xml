@@ -13,7 +13,7 @@
 	<bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
 		<!-- 注入数据源信息 -->
 		<property name="jdbcDriver" value="com.mysql.jdbc.Driver"></property>
-		<property name="jdbcUrl" value="jdbc:mysql://192.168.208.128:3306/activiti_test?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://192.168.16.204:3306/workflow?useUnicode=true&amp;characterEncoding=UTF-8"></property>
 		<property name="jdbcUsername" value="root"></property>
 		<property name="jdbcPassword" value="123456"></property>
 		<!-- 自动建表 -->

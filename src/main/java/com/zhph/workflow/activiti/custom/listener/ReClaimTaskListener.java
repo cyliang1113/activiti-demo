@@ -1,4 +1,4 @@
-package cn.leo.demo.activiti.custom.listener;
+package com.zhph.workflow.activiti.custom.listener;
 
 import org.activiti.engine.TaskService;
 import org.activiti.engine.delegate.DelegateTask;
@@ -18,10 +18,10 @@ public class ReClaimTaskListener implements TaskListener {
         log.info(delegateTask.getId() + ", " + delegateTask.getName() + ", " + delegateTask.getAssignee());
 
         String currentActivityId = delegateTask.getExecution().getCurrentActivityId();
-        String instanceId = delegateTask.getExecution().getProcessInstanceId();
+        String processInstanceId = delegateTask.getExecution().getProcessInstanceId();
 
         TaskService taskService = delegateTask.getExecution().getEngineServices().getTaskService();
-        Task task = getPreTask(taskService, instanceId, currentActivityId);
+        Task task = getPreTask(taskService, processInstanceId, currentActivityId);
 
         if (task != null) {
             try {
@@ -32,11 +32,11 @@ public class ReClaimTaskListener implements TaskListener {
         }
     }
 
-    private Task getPreTask(TaskService taskService, String instanceId, String activitiId) {
+    private Task getPreTask(TaskService taskService, String processInstanceId, String activityId) {
         Task task = taskService.createNativeTaskQuery().sql(
                 "SELECT * FROM ACT_HI_TASKINST task" + "\n" +
                 "JOIN ACT_HI_ACTINST act on act.TASK_ID_ = task.ID_" + "\n" +
-                "WHERE task.PROC_INST_ID_ = '" + instanceId + "' AND act.ACT_ID_ = '" + activitiId + "'\n" +
+                "WHERE task.PROC_INST_ID_ = '" + processInstanceId + "' AND act.ACT_ID_ = '" + activityId + "'\n" +
                 "ORDER BY act.START_TIME_ DESC LIMIT 1")
                 .singleResult();
         return task;
