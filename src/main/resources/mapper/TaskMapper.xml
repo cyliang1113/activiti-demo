@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhph.workflow.mapper.TaskMapper">
+    <select id="findTask" resultType="com.zhph.workflow.api.po.WorkflowTask">
+        SELECT
+            t1.ID_ `id`,
+            t1.TASK_DEF_KEY_ `name`,
+            t1.ASSIGNEE_ `assignee`,
+            t1.CREATE_TIME_ `createTime`
+        FROM act_ru_task t1
+    </select>
+</mapper>
+
+

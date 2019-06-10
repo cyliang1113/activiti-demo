@@ -1,5 +1,6 @@
 package cn.leo.lab.activitidemo;
 
+import com.alibaba.fastjson.JSON;
 import com.zhph.workflow.api.po.WorkflowTask;
 import com.zhph.workflow.mapper.TaskMapper;
 import org.activiti.engine.ManagementService;
@@ -12,15 +13,14 @@ import org.activiti.engine.repository.DeploymentBuilder;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.task.TaskQuery;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
 import java.util.List;
 
-public class BaoXiaoProcessTest {
-    private static Log log = LogFactory.getLog(BaoXiaoProcessTest.class);
+public class BaoXiaoProcessTest3 {
+    private static Log log = LogFactory.getLog(BaoXiaoProcessTest3.class);
 
     private static ProcessEngine processEngine = null;
 
@@ -35,9 +35,9 @@ public class BaoXiaoProcessTest {
     @Test
     public void deploy() {
         DeploymentBuilder deployment = processEngine.getRepositoryService().createDeployment();
-        deployment.addClasspathResource("process/baoxiao/baoxiaoliucheng.bpmn");
-        deployment.addClasspathResource("process/baoxiao/baoxiaoliucheng.png");
-        deployment.name("报销流程部署");
+        deployment.addClasspathResource("process/baoxiao/baoxiaoliucheng3.bpmn");
+        deployment.addClasspathResource("process/baoxiao/baoxiaoliucheng3.png");
+        deployment.name("报销流程3部署");
         Deployment deploy = deployment.deploy();
         log.info(deploy.getId());
         log.info(deploy.getName());
@@ -60,7 +60,8 @@ public class BaoXiaoProcessTest {
     public void baoxiaoStart(){
 //        String liuchengId = "qingjialiucheng:1:4";
 //        ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceById(liuchengId);
-        String key = "baoxiaoliucheng";
+        processEngine.getIdentityService().setAuthenticatedUserId("XxXX");
+        String key = "baoxiaoliucheng3";
         ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceByKey(key);
         log.info(processInstance.getId());
         log.info(processInstance.getName());
@@ -75,7 +76,7 @@ public class BaoXiaoProcessTest {
                 return tasks;
             }
         });
-        log.info(workflowTasks);
+        log.info(JSON.toJSONString(workflowTasks));
     }
 
     /**
@@ -98,7 +99,7 @@ public class BaoXiaoProcessTest {
      */
     @Test
     public void baoxiao(){
-        String taskId = "15004";
+        String taskId = "20004";
         processEngine.getTaskService().complete(taskId);
 
     }
@@ -111,5 +112,10 @@ public class BaoXiaoProcessTest {
         String taskId = "20002";
         processEngine.getTaskService().complete(taskId);
 
+    }
+
+    @Test
+    public void delProc() {
+        processEngine.getRuntimeService().deleteProcessInstance("10001", "测试删除");
     }
 }
