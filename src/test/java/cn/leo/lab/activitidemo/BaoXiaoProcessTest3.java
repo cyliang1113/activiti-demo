@@ -11,6 +11,7 @@ import org.activiti.engine.impl.cmd.AbstractCustomSqlExecution;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.DeploymentBuilder;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.runtime.ProcessInstanceQuery;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.task.TaskQuery;
 import org.apache.commons.logging.Log;
@@ -84,14 +85,12 @@ public class BaoXiaoProcessTest3 {
      */
     @Test
     public void queryProcess(){
-        TaskQuery taskQuery = processEngine.getTaskService().createTaskQuery();
-        //taskQuery.taskAssignee("zhangsan");
-        List<Task> list = taskQuery.list();
-        for(Task t : list){
-            log.info(t.getName());
-            log.info(t.getId());
-            log.info(t.getTaskLocalVariables());
+        ProcessInstanceQuery processInstanceQuery = processEngine.getRuntimeService().createProcessInstanceQuery();
+        List<ProcessInstance> list = processInstanceQuery.processInstanceId("2501").list();
+        for (ProcessInstance processInstance : list) {
+            log.info(processInstance.getId());
         }
+
     }
 
     /**
@@ -99,7 +98,7 @@ public class BaoXiaoProcessTest3 {
      */
     @Test
     public void baoxiao(){
-        String taskId = "20004";
+        String taskId = "2505";
         processEngine.getTaskService().complete(taskId);
 
     }
@@ -116,6 +115,6 @@ public class BaoXiaoProcessTest3 {
 
     @Test
     public void delProc() {
-        processEngine.getRuntimeService().deleteProcessInstance("10001", "测试删除");
+        processEngine.getRuntimeService().deleteProcessInstance("20001", "测试删除");
     }
 }
