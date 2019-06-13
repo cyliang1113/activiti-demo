@@ -10,6 +10,39 @@
             t1.CREATE_TIME_ `createTime`
         FROM act_ru_task t1
     </select>
+
+    <select id="queryTask" resultType="com.zhph.workflow.api.po.WorkflowTask">
+        select
+            t1.START_USER_ID_ `startUser`,
+            pd.KEY_ `processName`,
+            t1.PROC_INST_ID_ `processId`,
+            t1.BUSINESS_KEY_ `orderNo`,
+            t2.TASK_DEF_KEY_ `name`,
+            t2.ID_ `id`,
+            t2.START_TIME_ `createTime`
+        from
+            act_hi_procinst t1
+        LEFT JOIN
+            act_re_procdef pd
+        ON
+            t1.PROC_DEF_ID_ = pd.ID_
+        LEFT JOIN
+            act_hi_taskinst t2
+        ON
+            t1.PROC_INST_ID_ = t2.PROC_INST_ID_
+        <where>
+            t2.END_TIME_ is null
+            <if test="startUser != null">
+                AND t2.START_USER_ID_ = #{startUser}
+            </if>
+            <if test="name != null">
+                AND t2.TASK_DEF_KEY_ = #{name}
+            </if>
+            <if test="orderNo != null">
+                AND t2.BUSINESS_KEY_ = #{orderNo}
+            </if>
+        </where>
+    </select>
 </mapper>
 
 

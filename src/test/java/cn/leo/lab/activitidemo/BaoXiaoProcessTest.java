@@ -2,10 +2,8 @@ package cn.leo.lab.activitidemo;
 
 import com.zhph.workflow.api.po.WorkflowTask;
 import com.zhph.workflow.mapper.TaskMapper;
-import org.activiti.engine.ManagementService;
-import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngineConfiguration;
-import org.activiti.engine.RepositoryService;
+import org.activiti.engine.*;
+import org.activiti.engine.history.HistoricProcessInstanceQuery;
 import org.activiti.engine.impl.cmd.AbstractCustomSqlExecution;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.DeploymentBuilder;
@@ -71,11 +69,22 @@ public class BaoXiaoProcessTest {
         ManagementService managementService = processEngine.getManagementService();
         List<WorkflowTask> workflowTasks = managementService.executeCustomSql(new AbstractCustomSqlExecution<TaskMapper, List<WorkflowTask>>(TaskMapper.class) {
             public List<WorkflowTask> execute(TaskMapper customMapper) {
-                List<WorkflowTask> tasks = customMapper.findTask();
+                List<WorkflowTask> tasks = customMapper.queryTask(new WorkflowTask());
                 return tasks;
             }
         });
-        log.info(workflowTasks);
+        for (WorkflowTask workflowTask : workflowTasks) {
+            log.info(workflowTask);
+        }
+        HistoryService historyService = processEngine.getHistoryService();
+        HistoricProcessInstanceQuery historicProcessQuery = historyService.createHistoricProcessInstanceQuery();
+        historicProcessQuery
+                .startedBy("")
+                .processDefinitionKey("")
+                .variableValueEquals("", "")
+                .variableValueEquals("","");
+
+
     }
 
     /**

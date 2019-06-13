@@ -7,5 +7,6 @@ import java.util.List;
 public interface TaskMapper {
 
     List<WorkflowTask> findTask();
+    List<WorkflowTask> queryTask(WorkflowTask task);
 
 }
