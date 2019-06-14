@@ -76,15 +76,6 @@ public class BaoXiaoProcessTest {
         for (WorkflowTask workflowTask : workflowTasks) {
             log.info(workflowTask);
         }
-        HistoryService historyService = processEngine.getHistoryService();
-        HistoricProcessInstanceQuery historicProcessQuery = historyService.createHistoricProcessInstanceQuery();
-        historicProcessQuery
-                .startedBy("")
-                .processDefinitionKey("")
-                .variableValueEquals("", "")
-                .variableValueEquals("","");
-
-
     }
 
     /**
