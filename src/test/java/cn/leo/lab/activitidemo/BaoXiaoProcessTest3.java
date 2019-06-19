@@ -18,7 +18,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BaoXiaoProcessTest3 {
     private static Log log = LogFactory.getLog(BaoXiaoProcessTest3.class);
@@ -61,7 +63,7 @@ public class BaoXiaoProcessTest3 {
     public void baoxiaoStart(){
 //        String liuchengId = "qingjialiucheng:1:4";
 //        ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceById(liuchengId);
-        processEngine.getIdentityService().setAuthenticatedUserId("XxXX");
+        processEngine.getIdentityService().setAuthenticatedUserId("33");
         String key = "baoxiaoliucheng3";
         ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceByKey(key);
         log.info(processInstance.getId());
@@ -98,9 +100,8 @@ public class BaoXiaoProcessTest3 {
      */
     @Test
     public void baoxiao(){
-        String taskId = "2505";
+        String taskId = "35004";
         processEngine.getTaskService().complete(taskId);
-
     }
 
     /**
@@ -108,8 +109,10 @@ public class BaoXiaoProcessTest3 {
      */
     @Test
     public void qingjiashenpi(){
-        String taskId = "20002";
-        processEngine.getTaskService().complete(taskId);
+        String taskId = "42509";
+        Map<String, Object> vars = new HashMap<>();
+        vars.put("result", 1);
+        processEngine.getTaskService().complete(taskId, vars);
 
     }
 
