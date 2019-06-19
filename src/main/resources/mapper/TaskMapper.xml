@@ -22,15 +22,16 @@
             t2.CREATE_TIME_ `createTime`
         from
             act_hi_procinst t1
-        LEFT JOIN
+        inner JOIN
             act_re_procdef pd
         ON
             t1.PROC_DEF_ID_ = pd.ID_
-        LEFT JOIN
+        inner JOIN
             act_ru_task t2
         ON
             t1.PROC_INST_ID_ = t2.PROC_INST_ID_
         <where>
+            t1.END_TIME_ is null
             <if test="startUser != null">
                 AND t1.START_USER_ID_ = #{startUser}
             </if>
