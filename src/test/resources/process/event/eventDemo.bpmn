@@ -2,7 +2,7 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <signal id="cancel_order_signal" name="取消订单信号" activiti:scope="processInstance"></signal>
   <signal id="not_allow_cancel_order_signal" name="不允许取消订单信号" activiti:scope="processInstance"></signal>
-  <process id="eventDemoProcess" name="事件demo流程" isExecutable="true">
+  <process id="eventDemoProcess" name="eventDemo流程" isExecutable="true">
     <startEvent id="startevent1" name="Start"></startEvent>
     <parallelGateway id="parallelgateway1" name="Parallel Gateway"></parallelGateway>
     <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="parallelgateway1"></sequenceFlow>
