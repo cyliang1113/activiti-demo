@@ -4,7 +4,7 @@
     <userTask id="entry" name="进件" activiti:assignee="${entryUser}"></userTask>
     <userTask id="first_verify" name="初审" activiti:candidateUsers="B1,B2">
       <extensionElements>
-        <activiti:taskListener event="create" class="cn.leo.demo.activiti.listener.ReClaimTaskListener"></activiti:taskListener>
+        <activiti:taskListener event="create" class="cn.leo.demo.activiti.custom.listener.ReClaimTaskListener"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow2" sourceRef="entry" targetRef="first_verify"></sequenceFlow>
@@ -15,7 +15,7 @@
     </sequenceFlow>
     <userTask id="re_verify" name="复审" activiti:candidateUsers="C1,C2">
       <extensionElements>
-        <activiti:taskListener event="create" class="cn.leo.demo.activiti.listener.ReClaimTaskListener"></activiti:taskListener>
+        <activiti:taskListener event="create" class="cn.leo.demo.activiti.custom.listener.ReClaimTaskListener"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow5" name="通过" sourceRef="exclusivegateway1" targetRef="re_verify">

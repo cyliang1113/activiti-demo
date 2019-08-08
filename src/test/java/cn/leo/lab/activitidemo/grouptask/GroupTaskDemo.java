@@ -40,7 +40,7 @@ public class GroupTaskDemo {
         DeploymentBuilder deployment = processEngine.getRepositoryService().createDeployment();
         deployment.addClasspathResource("process/grouptask/grouptask.bpmn");
         deployment.addClasspathResource("process/grouptask/grouptask.png");
-        deployment.name("group任务部署");
+        deployment.name("组任务部署");
         Deployment deploy = deployment.deploy();
         log.info(deploy.getId());
         log.info(deploy.getName());
@@ -52,7 +52,7 @@ public class GroupTaskDemo {
     @Test
     public void start(){
         String key = "grouptask";    //流程的唯一标识
-        String entryUser = "XiXi";       //进件人Id
+        String entryUser = "Leo";       //进件人Id
         processEngine.getIdentityService().setAuthenticatedUserId(entryUser);
         ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceByKey(key);
         HistoricProcessInstance processInstance1 = processEngine.getHistoryService().createHistoricProcessInstanceQuery().processInstanceId(processInstance.getId()).singleResult();

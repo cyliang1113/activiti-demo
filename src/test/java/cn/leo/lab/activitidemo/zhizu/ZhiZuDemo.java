@@ -40,22 +40,24 @@ public class ZhiZuDemo {
     @Test
     public void deploy() {
         DeploymentBuilder deployment = processEngine.getRepositoryService().createDeployment();
-        deployment.addClasspathResource("process/zhizu/zhizu.bpmn");
-        deployment.addClasspathResource("process/zhizu/zhizu.png");
-        deployment.name("直租部署");
+        deployment.addClasspathResource("process/directLease/directLeaseProcess.bpmn");
+        deployment.addClasspathResource("process/directLease/directLeaseProcess.png");
+        deployment.name("直租流程部署");
         Deployment deploy = deployment.deploy();
         log.info(deploy.getId());
         log.info(deploy.getName());
     }
+
+
 
     /**
      * 开始流程
      */
     @Test
     public void start(){
-        String key = "zhiZuProcess";    //流程的唯一标识
-        String entryUser = "XiXi";       //进件人Id
-        String businessKey = "orderNo0099";      //订单号
+        String key = "directLeaseProcess";    //流程的唯一标识
+        String entryUser = "Leon1";       //进件人Id
+        String businessKey = "orderNo1001015";      //订单号
         String title = "订单" + businessKey;      //标题
         Map<String, Object> variables = new HashMap<String, Object>();
         variables.put("entryUser", entryUser);
@@ -171,7 +173,14 @@ public class ZhiZuDemo {
 
     @Test
     public void delProc() {
-        String id = "197501";
+        //215001
+        //217501
+        //222501
+        //225001
+        String id = "2501";
+        String taskId = "2506";
+        String comment = "测试删除.";
+        processEngine.getTaskService().addComment(taskId, id, comment);
         processEngine.getRuntimeService().deleteProcessInstance(id, "测试删除");
     }
 }
